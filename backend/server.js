@@ -3,7 +3,8 @@ const dotenv = require("dotenv");
 const colors = require("colors");
 const connectDB = require("./config/db");
 const { errorHandler } = require("./middlewares/errorMiddleware");
-const basicRouter = require("./routes/goalRoutes");
+const goalRouter = require("./routes/goalRoutes");
+const userRouter = require("./routes/userRoutes");
 dotenv.config();
 
 const port = process.env.PORT || 5000;
@@ -19,7 +20,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(errorHandler);
 
 // api
-app.use("/api/goals", basicRouter);
+app.use("/api/goals", goalRouter);
+app.use("/api/users", userRouter);
 
 app.listen(port, () => {
   console.log(` SERVER ON PORT ${port}  `);

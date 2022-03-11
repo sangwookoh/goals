@@ -9,8 +9,10 @@ const {
 
 // 아래 두줄(공통되는 route)를 한줄로 적을수 있음
 
-router.route("/").get(getGoals).post(setGoals);
-router.route("/:id").put(updateGoals).delete(deleteGoals);
+const { protect } = require("../middlewares/authMiddleware");
+
+router.route("/").get(protect, getGoals).post(protect, setGoals);
+router.route("/:id").put(protect, updateGoals).delete(protect, deleteGoals);
 
 // // C
 // router.post("/", setGoals);
